@@ -11,7 +11,7 @@ Define the heartbeat dependency in the manifest idf_component.yml.
 To run the provided example, create it as follows:
 
 ```bash
-idf.py create-project-from-example "peterhouwen/esp_idf_components/components/hearbeat:heartbeat-example"
+idf.py create-project-from-example "peterhouwen/esp-idf_components/components/hearbeat:heartbeat-example"
 ```
 
 Then build as usual:
