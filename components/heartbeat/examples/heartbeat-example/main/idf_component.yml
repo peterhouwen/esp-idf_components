@@ -1,0 +1,4 @@
+dependencies:
+  heartbeat:
+    version: "*"
+    override_path: '../../../'
