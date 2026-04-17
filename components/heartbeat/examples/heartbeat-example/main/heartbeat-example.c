@@ -5,19 +5,13 @@
 #include "sdkconfig.h"
 #include "heartbeat.h"
 
-static const char *TAG = "ines_tl";
-
-TaskHandle_t xHandle = NULL;
+static const char *TAG = "heartbeat";
 
 void app_main(void)
 {
-    esp_err_t ret = xTaskCreate( heartbeat, "Heartbeat", 1024, NULL, 10, &xHandle );
-    configASSERT( xHandle );
 
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Task creation failed: %s", esp_err_to_name(ret));
-    }
-
+    launch_heartbeat();
+    
     for( ;; )
     {
         // empty
