@@ -21,6 +21,10 @@
 #define LEDC_TEST_FADE_TIME     (48)
 #define LEDC_TEST_FADE_TIME2    (96)
 
+static const char *TAG = "heartbeat";
+
+TaskHandle_t xHandle = NULL;
+
 /* Warning:
  * For ESP32, ESP32S2, ESP32S3, ESP32C3, ESP32C2, ESP32C6, ESP32H2 (rev < 1.2), ESP32P4 (rev < 3.0) targets,
  * when LEDC_DUTY_RES selects the maximum duty resolution (i.e. value equal to SOC_LEDC_TIMER_BIT_WIDTH),
@@ -54,7 +58,6 @@ static void example_ledc_init(void)
     ledc_fade_func_install(0);
 
 }
-
 
 void heartbeat(void *arg)
 {
@@ -93,4 +96,16 @@ void heartbeat(void *arg)
 
     }
 
+}
+
+int launch_heartbeat()
+{
+    esp_err_t ret = xTaskCreate( heartbeat, "Heartbeat", 1024, NULL, 10, &xHandle );
+    configASSERT( xHandle );
+
+    if (ret != pdPASS) {
+        ESP_LOGE(TAG, "Task creation failed: %s", esp_err_to_name(ret));
+    }
+
+    return 0;
 }

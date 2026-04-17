@@ -22,7 +22,7 @@ april 2026
 /* --- PUBLIC FUNCTIONS PROTOTYPES ------------------------------------------ */
 
 
-void heartbeat(void *arg);
+int launch_heartbeat();
 
 
 /* --- EOF ------------------------------------------------------------------ */
